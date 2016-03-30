@@ -9,33 +9,40 @@
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
   <title> Note Pad Alpha </title> 
+  <link rel="stylesheet" href="notepad.css">
   </head>
   <body>
-    <h3> Note Pad Alpha </h3>
-    <div id='tasksDiv'></div>
-    <input type='text' id='titleInput' placeholder='Note Title'>
-    <input type='text' id='noteInput' placeholder='Note'>
-    <script>
-      var myDataRef = new Firebase('https://j3kg03o4m3o.firebaseio-demo.com/');
-      //noteInput : title and note
-      $('#noteInput').keypress(function (e) { 
-        if (e.keyCode == 13) {
-          var name = $('#titleInput').val();
-          var text = $('#noteInput').val();
-          myDataRef.push({name: name, text: text});
-          $('#noteInput').val('');
-        }
-      });
+  	<div id='lines'>
+	    <h3> Note Pad Alpha </h3>
+	    <div id='tasksDiv'>
+		    <input type='text' id='titleInput' placeholder='Note Title'>
+		    <input type='text' id='noteInput' placeholder='Note'>
+		    <input type="checkbox" id="completed" > Completed 	
+		    <script>
+		      var myDataRef = new Firebase('https://j3kg03o4m3o.firebaseio-demo.com/');
+		      //noteInput : title and note with checkbox if completed
+		      $('#completed').keypress(function (e) { 
+		        if (e.keyCode == 13) {
+		          var name = $('#titleInput').val();
+		          var text = $('#noteInput').val();
+		          var check = $('#completed').val();
 
-      myDataRef.on('child_added', function(snapshot) {
-  	    var message = snapshot.val();
-  	    displayNotePad(message.name, message.text);
-      });
-      //function for displayNotePad
-      function displayNotePad(name, text) {
-        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#tasksDiv'));
-        $('#tasksDiv')[0].scrollTop = $('#tasksDiv')[0].scrollHeight;
-      };
-    </script>
+		          myDataRef.push({name: name, text: text, check: check});
+		          $('#noteInput').val('');
+		        }
+		      });
+
+		      myDataRef.on('child_added', function(snapshot) {
+		  	    var message = snapshot.val();
+		  	    displayNotePad(message.name, message.text);
+		      });
+		      //function for displayNotePad
+		      function displayNotePad(name, text, check) {
+		        $('<div/>').text(text).prepend($('<b/>').text(name+': ')).appendTo($('#tasksDiv'));
+		        $('#tasksDiv')[0].scrollTop = $('#tasksDiv')[0].scrollHeight;
+		      };
+		    </script>
+	    </div>
+	</div>  
   </body>
 </html>

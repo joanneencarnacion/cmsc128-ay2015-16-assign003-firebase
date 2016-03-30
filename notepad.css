@@ -1,0 +1,38 @@
+body {
+ background: url(http://i.stack.imgur.com/ynxjD.png) repeat-y;
+ width: 800px;
+ font: normal 30px courier;
+ line-height: 25px;
+ padding: 2px 10px;
+ border: solid 1px #CD0000;
+}
+h3 {
+  color: #CD0000;
+  font-size: 36px;
+  letter-spacing: -2px;
+  text-align: left;
+}
+.tasksDiv {
+  padding: 0 !important;
+  width: 800px;
+  font-family: courier, monospace;
+  font-color: #FFA500;
+  border: 1px solid #dedede;
+  border-bottom: 1px dotted #ccc;
+  text-indent: 25px;
+  text-transform: capitalize;
+}
+
+.tasksDiv:hover {
+  -webkit-transition: all 0.2s;
+  -moz-transition:    all 0.2s;
+  -ms-transition:     all 0.2s;
+  -o-transition:      all 0.2s;
+}
+.lines {
+  border-left: 1px solid #CD0000;
+  border-right: 1px solid #CD0000;
+  width: 800px;
+  float: left;
+  margin-left: 40px;
+}
